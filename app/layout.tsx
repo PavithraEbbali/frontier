@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Manrope, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SiteMotion from "@/components/SiteMotion";
-import DemoBanner from "@/components/DemoBanner";
 import { BUSINESS, DEMO_MODE, req, siteUrl } from '@/lib/business';
 import { PLANS, planOffers } from "@/lib/catalog";
 
@@ -179,7 +178,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`js ${grotesk.variable} ${manrope.variable} ${mono.variable}`}>
       <body>
-        <DemoBanner />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}

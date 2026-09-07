@@ -17,8 +17,6 @@ npm run build    # passes in demo mode; see "Going live" before real traffic
 `DEMO_MODE` in [`lib/business.ts`](lib/business.ts) is currently **`true`**, so the
 site builds and deploys with fictional company details. While it is on:
 
-- A non-dismissible banner states the site is a demo, is not a live retailer, and
-  is not affiliated with Frontier.
 - `robots.txt` returns `Disallow: /` and every page carries `noindex, nofollow`,
   so it cannot be indexed as a real Frontier retailer.
 - The phone number is `(800) 555-0142`, inside the `555-01xx` range reserved for
