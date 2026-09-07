@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Frontier">
+  <rect width="100" height="100" fill="#FF0037"/>
+  <!-- Monogram: two bars at left, thick open ring at right. -->
+  <rect x="10" y="21" width="42" height="15" fill="#fff"/>
+  <rect x="10" y="43" width="30" height="15" fill="#fff"/>
+  <path d="M50 14 a36 36 0 0 1 0 72 h-8 V71 h8 a21 21 0 0 0 0-42 h-8 V14 Z" fill="#fff"/>
+</svg>
