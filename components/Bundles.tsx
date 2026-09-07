@@ -49,7 +49,7 @@ export default function Bundles() {
         </ul>
 
         <div className="offers__foot" data-reveal="up">
-          <a className="btn btn--light btn--lg btn--order" href={telHref()}>
+          <a className="btn btn--light btn--lg btn--order" href={telHref()} data-call-cta>
             <svg className="ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z" fill="currentColor" /></svg>
             {callLabel('Call to claim an offer')}
           </a>

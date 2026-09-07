@@ -55,8 +55,13 @@ html:focus-within { scroll-padding-top: calc(var(--header-h) + 30px); }
 body {
   font-family: var(--font-body); color: var(--ink); background: var(--bg);
   line-height: 1.65; font-size: clamp(1rem, .96rem + .2vw, 1.075rem); font-weight: 400;
-  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: clip; /* clip, not hidden: does not create a scroll container */
 }
+main, .site-footer, .site-header { overflow-x: clip; }
+/* Nothing may exceed the viewport, whatever its intrinsic width. */
+img, svg, video, canvas, iframe, table { max-width: 100%; }
+img, svg, video { height: auto; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
@@ -153,6 +158,35 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .btn--block { width: 100%; }
 .magnetic { will-change: transform; }
 
+/* ═══════════════════ Sticky mobile call bar (mobile only) ═══════════════ */
+/* Rendered on every route, never scroll-gated. Hidden from 760px up. */
+.callbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 500;
+  background: var(--ink); border-top: 2px solid var(--brand);
+  padding: 6px var(--pad);
+  padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -6px 24px rgba(0,0,0,.22);
+}
+.callbar__link {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; min-height: 48px; max-height: 52px;
+  background: var(--brand); color: #fff; border-radius: var(--r-pill);
+  font-family: var(--font-display); font-weight: 700; font-size: 1.02rem;
+  letter-spacing: -.01em;
+}
+.callbar__link:active { transform: scale(.99); }
+.callbar__ico { flex: 0 0 auto; }
+.callbar__label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Clear the bar so it never covers footer disclaimers, policy links or the
+   copyright line. Height is 6 + 48 + 6 + border + safe area. */
+@media (max-width: 759px) {
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (min-width: 760px) {
+  .callbar { display: none; }
+}
+
 /* ------------------------------ Disclosure ------------------------------ */
 .disclosure { background: linear-gradient(90deg, var(--brand-700), var(--brand) 55%, var(--brand-400)); color: #fff; font-size: .82rem; }
 .disclosure__row { display: flex; align-items: center; gap: 12px; padding: 8px 0; flex-wrap: wrap; }
@@ -181,7 +215,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .phone-link .ico { color: var(--brand); transition: transform .4s var(--ease); }
 .phone-link:hover { color: var(--brand-ink); }
 .phone-link:hover .ico { transform: rotate(-12deg) scale(1.12); }
-.nav-toggle { display: none; width: 44px; height: 44px; border-radius: 12px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 1px solid var(--line); }
+.nav-toggle { display: none; flex: 0 0 44px; width: 44px; min-width: 44px; height: 44px; border-radius: 12px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 1px solid var(--line); }
 .nav-toggle span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .3s var(--ease), opacity .2s var(--ease); }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -416,8 +450,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .plancard__badge { font-family: var(--font-body); font-size: .66rem; font-weight: 800; letter-spacing: .07em;
   text-transform: uppercase; background: var(--brand); color: #fff; padding: 3px 9px; border-radius: var(--r-pill); }
 .plancard__speed { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; }
-.plancard__num { font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 2.6rem); font-weight: 700;
-  line-height: 1; letter-spacing: -.03em; }
+.plancard__num { font-family: var(--font-display); font-size: clamp(1.6rem, 1.3rem + 1.3vw, 2.05rem);
+  font-weight: 700; line-height: 1; letter-spacing: -.03em; }
 .plancard__unit { font-size: .84rem; font-weight: 700; color: var(--muted); }
 .plancard__unit i { display: block; font-style: normal; font-size: .72rem; font-weight: 600; color: var(--muted-2); }
 
@@ -427,8 +461,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .lockup__intro { font-size: .78rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
   color: var(--brand-ink); }
 .lockup__row { display: flex; align-items: baseline; gap: 4px; }
-.lockup__amt { font-family: var(--font-display); font-size: clamp(2.3rem, 4vw, 3rem); font-weight: 700;
-  line-height: 1; letter-spacing: -.035em; }
+.lockup__amt { font-family: var(--font-display); font-size: clamp(2.5rem, 1.9rem + 2.4vw, 3.25rem);
+  font-weight: 800; line-height: 1; letter-spacing: -.035em; }
 .lockup__per { font-size: .95rem; font-weight: 700; color: var(--muted); }
 .lockup__step { font-size: .78rem; line-height: 1.5; color: var(--muted); margin-top: 6px; }
 .lockup__cond { margin-top: 8px; display: grid; gap: 3px; }
@@ -791,7 +825,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 @media (max-width: 420px) {
   .feats { grid-template-columns: 1fr; }
   .hero__title { max-width: none; }
-  .lockup__amt { font-size: clamp(2rem, 1.4rem + 4vw, 2.6rem); }
+  .lockup__amt { font-size: clamp(2.5rem, 2.2rem + 1.2vw, 2.8rem); }
   .offercard__value { font-size: clamp(1.7rem, 1.2rem + 3.4vw, 2.2rem); }
 }
 
@@ -799,4 +833,33 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 @media (hover: none) {
   .plancard:hover .plancard__inner,
   .offercard:hover { transform: none; }
+}
+
+/* ---- §8.5 target sizes at the smallest viewport ---- */
+@media (max-width: 860px) {
+  /* Short footer links ("Privacy", "TCPA") are narrower than 44px on text
+     alone; pad the target without changing the visual rhythm. */
+  .footer__col a,
+  .footer__mini a { min-width: 44px; }
+  .footer__mini a { justify-content: center; }
+  .brand { flex: 0 1 auto; min-width: 104px; }
+  .brand__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+/* ---- §2.0 disclosure bar: clean centred wrap on small screens ---- */
+@media (max-width: 620px) {
+  .disclosure { font-size: .78rem; }
+  .disclosure__row { justify-content: center; text-align: center; gap: 8px;
+    padding: 8px 4px; line-height: 1.5; }
+  .disclosure__dot { display: none; }
+  .disclosure__cta { margin-left: 0; flex-basis: 100%; justify-content: center; }
+}
+
+/* At 320-380px the header must fit brand + call + toggle. Compact the call
+   button rather than crushing the logo; the number stays visible throughout. */
+@media (max-width: 380px) {
+  .header__row { gap: 8px; }
+  .btn--call { padding: 10px 12px; gap: 7px; }
+  .btn__callnum { font-size: .82rem; }
+  .btn--call .ico { width: 15px; height: 15px; }
 }

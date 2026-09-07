@@ -39,7 +39,7 @@ export default function Page() {
           <h2 id="changes">7. Changes</h2>
           <p>We may update this disclaimer at any time. The "Last updated" date shows the current version, and continued use of the site means you accept the latest version.</p>
           <h2 id="contact">8. Contact us</h2>
-          <p>Questions about this disclaimer? Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()}>{phoneDisplay()}</a>.</p>
+          <p>Questions about this disclaimer? Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()} data-call-cta>{phoneDisplay()}</a>.</p>
         </div>
       </section>
     </PolicyChrome>

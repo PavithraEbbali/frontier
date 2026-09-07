@@ -47,7 +47,7 @@ export default function Page() {
           <h2 id="complaints">9. Complaints</h2>
           <p>If you believe any of our advertising is inaccurate or misleading, tell us and we will investigate and correct it where warranted.</p>
           <h2 id="contact">10. Contact us</h2>
-          <p>Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()}>{phoneDisplay()}</a>.</p>
+          <p>Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()} data-call-cta>{phoneDisplay()}</a>.</p>
         </div>
       </section>
     </PolicyChrome>

@@ -43,7 +43,7 @@ export default function Page() {
           <h2 id="recording">7. Call monitoring</h2>
           <p>Some calls may be monitored or recorded for quality, training and compliance purposes, consistent with applicable law. Where required, we will notify you at the start of the call.</p>
           <h2 id="contact">8. Contact us</h2>
-          <p>Questions about this TCPA Policy? Email <a href={`mailto:${req('email')}`}>{req('email')}</a>, call <a href={telHref()}>{phoneDisplay()}</a>, or write to {req('legalName')}, {req('street')}, {req('cityStateZip')}.</p>
+          <p>Questions about this TCPA Policy? Email <a href={`mailto:${req('email')}`}>{req('email')}</a>, call <a href={telHref()} data-call-cta>{phoneDisplay()}</a>, or write to {req('legalName')}, {req('street')}, {req('cityStateZip')}.</p>
         </div>
       </section>
     </PolicyChrome>

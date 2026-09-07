@@ -40,7 +40,7 @@ export default function Page() {
           <h2 id="support">8. Support</h2>
           <p>Frontier provides technical support for active service, typically around the clock. For help choosing or ordering a plan, {req('legalName')} is here for you by phone or email.</p>
           <h2 id="contact">9. Contact us</h2>
-          <p>Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()}>{phoneDisplay()}</a>.</p>
+          <p>Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()} data-call-cta>{phoneDisplay()}</a>.</p>
         </div>
       </section>
     </PolicyChrome>

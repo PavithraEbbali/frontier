@@ -36,7 +36,7 @@ export default function Page() {
           <h2 id="reporting">6. Reporting a concern</h2>
           <p>If you believe any trademark is used incorrectly on this site, please let us know and we will review it promptly.</p>
           <h2 id="contact">7. Contact us</h2>
-          <p>Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()}>{phoneDisplay()}</a>.</p>
+          <p>Email <a href={`mailto:${req('email')}`}>{req('email')}</a> or call <a href={telHref()} data-call-cta>{phoneDisplay()}</a>.</p>
         </div>
       </section>
     </PolicyChrome>

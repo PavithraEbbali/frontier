@@ -89,11 +89,11 @@ export default function Plans() {
                 </ul>
 
                 <div className="plancard__actions">
-                  <a className="btn btn--primary btn--block btn--order" href={telHref()}>
+                  <a className="btn btn--primary btn--block btn--order" href={telHref()} data-call-cta>
                     <svg className="ico" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z" fill="currentColor" /></svg>
                     Call to order
                   </a>
-                  {hasPhone() ? <a className="plancard__call" href={telHref()}>{phoneDisplay()}</a> : null}
+                  {hasPhone() ? <a className="plancard__call" href={telHref()} data-call-cta>{phoneDisplay()}</a> : null}
                 </div>
               </article>
             </li>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Manrope, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SiteMotion from "@/components/SiteMotion";
+import CallBar from "@/components/CallBar";
 import { BUSINESS, DEMO_MODE, req, siteUrl } from '@/lib/business';
 import { PLANS, planOffers } from "@/lib/catalog";
 
@@ -183,6 +184,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
         {children}
+        <CallBar />
         <SiteMotion />
       </body>
     </html>

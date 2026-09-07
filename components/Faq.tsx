@@ -8,7 +8,7 @@ export default function Faq() {
           <p className="eyebrow-mono">FAQ</p>
           <h2 className="head__title" id="faqTitle">Questions we get&nbsp;asked</h2>
           <p className="faq__sub">Straight answers about speeds, pricing and how ordering through a retailer works.</p>
-          <a className="faq__ask" href={telHref()}>Call to order →</a>
+          <a className="faq__ask" href={telHref()} data-call-cta>Call to order →</a>
         </header>
 
         <div className="faq__list" data-reveal="right">

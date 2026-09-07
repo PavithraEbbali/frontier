@@ -9,7 +9,7 @@ export default function Cta() {
           <h2 id="ctaTitle" className="cta__title">Get Frontier Fiber at your&nbsp;address.</h2>
           <p className="cta__sub">Call and we will confirm what is serviceable where you live, and what it costs.</p>
           <div className="cta__actions">
-            <a className="btn btn--light btn--lg btn--order" href={telHref()}>{callLabel("Call to order")}</a>
+            <a className="btn btn--light btn--lg btn--order" href={telHref()} data-call-cta>{callLabel("Call to order")}</a>
           </div>
         </div>
       </div>

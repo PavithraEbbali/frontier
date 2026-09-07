@@ -47,7 +47,7 @@ export default function Page() {
           <h2 id="changes">6. Changes</h2>
           <p>We may update this Cookies Policy as our practices or the law change. The "Last updated" date reflects the latest version.</p>
           <h2 id="contact">7. Contact us</h2>
-          <p>Questions about cookies? Email <a href={`mailto:${req('privacyEmail')}`}>{req('privacyEmail')}</a> or call <a href={telHref()}>{phoneDisplay()}</a>.</p>
+          <p>Questions about cookies? Email <a href={`mailto:${req('privacyEmail')}`}>{req('privacyEmail')}</a> or call <a href={telHref()} data-call-cta>{phoneDisplay()}</a>.</p>
         </div>
       </section>
     </PolicyChrome>

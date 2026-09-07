@@ -29,7 +29,7 @@ export default function PolicyChrome({ children }: { children: React.ReactNode }
             <Link href="/#faq" className="nav__link">FAQ</Link>
           </nav>
           <div className="header__actions">
-            <a className="phone-link" href={telHref()}><svg className="ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z" fill="currentColor" /></svg><span>{callLabel()}</span></a>
+            <a className="phone-link" href={telHref()} data-call-cta><svg className="ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z" fill="currentColor" /></svg><span>{callLabel()}</span></a>
             <Link className="btn btn--primary btn--sm magnetic" href="/#plans" data-magnetic>Check availability</Link>
             <button className="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"><span /><span /><span /></button>
           </div>
@@ -43,7 +43,7 @@ export default function PolicyChrome({ children }: { children: React.ReactNode }
             <Link href="/#phone">Home Phone</Link>
           <Link href="/#faq">FAQ</Link>
           <Link className="btn btn--primary" href="/#plans">Check availability</Link>
-          <a className="mobile-nav__call" href={telHref()}>Call {phoneDisplay()}</a>
+          <a className="mobile-nav__call" href={telHref()} data-call-cta>Call {phoneDisplay()}</a>
         </div>
       </header>
 
@@ -56,7 +56,7 @@ export default function PolicyChrome({ children }: { children: React.ReactNode }
               <Brand size={30} withQualifier={false} />
             </Link>
             <p className="footer__blurb">Independent authorized {agreementNounLower()} of Frontier® fiber internet, TV and Home Phone services.</p>
-            {hasPhone() ? <a className="footer__phone" href={telHref()}>{phoneDisplay()}</a> : null}
+            {hasPhone() ? <a className="footer__phone" href={telHref()} data-call-cta>{phoneDisplay()}</a> : null}
             {BUSINESS.email ? <a className="footer__email" href={`mailto:${req('email')}`}>{req('email')}</a> : null}
             {BUSINESS.hours ? <p className="footer__hours">{req('hours')}</p> : null}
           </div>

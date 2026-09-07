@@ -91,7 +91,7 @@ export default function Page() {
           <p>We may update this notice from time to time. The "Last updated" date reflects the most recent version. Material changes will be posted on this page.</p>
 
           <h2 id="contact">8. Contact us</h2>
-          <p>Questions or requests about your privacy? Email <a href={`mailto:${req('privacyEmail')}`}>{req('privacyEmail')}</a>, call <a href={telHref()}>{phoneDisplay()}</a>, or write to {req('legalName')}, {req('street')}, {req('cityStateZip')}.</p>
+          <p>Questions or requests about your privacy? Email <a href={`mailto:${req('privacyEmail')}`}>{req('privacyEmail')}</a>, call <a href={telHref()} data-call-cta>{phoneDisplay()}</a>, or write to {req('legalName')}, {req('street')}, {req('cityStateZip')}.</p>
         </div>
       </section>
     </PolicyChrome>

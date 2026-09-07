@@ -15,7 +15,7 @@ export default function Footer() {
             Independent authorized {agreementNounLower()} of Frontier® fiber internet,
             TV and Home Phone services.
           </p>
-          {hasPhone() ? <a className="footer__phone" href={telHref()}>{phoneDisplay()}</a> : null}
+          {hasPhone() ? <a className="footer__phone" href={telHref()} data-call-cta>{phoneDisplay()}</a> : null}
           {BUSINESS.email ? <a className="footer__email" href={`mailto:${req('email')}`}>{req('email')}</a> : null}
           {BUSINESS.hours ? <p className="footer__hours">{req('hours')}</p> : null}
         </div>

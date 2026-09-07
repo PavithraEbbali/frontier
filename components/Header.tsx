@@ -26,7 +26,7 @@ export default function Header() {
         </nav>
         <div className="header__actions">
           {/* Primary conversion is the phone call, so the number is the button. */}
-          <a className="btn btn--primary btn--call" href={telHref()}>
+          <a className="btn btn--primary btn--call" href={telHref()} data-call-cta>
             <PhoneIcon size={17} />
             <span className="btn__callnum">{callLabel()}</span>
           </a>
@@ -40,7 +40,7 @@ export default function Header() {
         <a href="#phone">Home Phone</a>
         <a href="#why">Why fiber</a>
         <a href="#faq">FAQ</a>
-        <a className="btn btn--primary mobile-nav__call" href={telHref()}>
+        <a className="btn btn--primary mobile-nav__call" href={telHref()} data-call-cta>
           <PhoneIcon size={17} /> {callLabel()}
         </a>
       </div>
