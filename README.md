@@ -7,7 +7,7 @@ there is no checkout and no backend.
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # see "Before deploying" — this fails by design until configured
+npm run build    # passes in demo mode; see "Going live" before real traffic
 ```
 
 ---
@@ -48,7 +48,6 @@ page. The error names exactly which are missing.
 
 Optional: `LEAD_ENDPOINT` in the same file, if a callback form is reintroduced.
 
-The build error names exactly which values are still missing.
 
 ## Deploying to Vercel
 
