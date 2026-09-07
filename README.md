@@ -12,13 +12,27 @@ npm run build    # see "Before deploying" — this fails by design until configu
 
 ---
 
-## Before deploying — required
+## Demo mode
 
-`npm run build` **intentionally fails** until the business-identity constants are
-filled in. This is a guard, not a bug: it stops placeholder or empty values from
-reaching a live page.
+`DEMO_MODE` in [`lib/business.ts`](lib/business.ts) is currently **`true`**, so the
+site builds and deploys with fictional company details. While it is on:
 
-Open [`lib/business.ts`](lib/business.ts) and set every field in `BUSINESS`:
+- A non-dismissible banner states the site is a demo, is not a live retailer, and
+  is not affiliated with Frontier.
+- `robots.txt` returns `Disallow: /` and every page carries `noindex, nofollow`,
+  so it cannot be indexed as a real Frontier retailer.
+- The phone number is `(800) 555-0142`, inside the `555-01xx` range reserved for
+  fiction, so it cannot ring a real line. Addresses and emails use the reserved
+  `example` names.
+- The canonical URL is taken from the Vercel deploy host.
+
+**Do not run traffic, ads or lead generation against a demo build.**
+
+## Going live — required
+
+Set `DEMO_MODE = false` and fill in `REAL_IDENTITY`. The build then refuses to
+compile until every value below is present, so placeholders cannot reach a live
+page. The error names exactly which are missing.
 
 | Constant | What it is |
 |---|---|
@@ -43,10 +57,10 @@ The build error names exactly which values are still missing.
    are all detected — no overrides needed, and no `vercel.json` is required.
 3. No environment variables are needed. Configuration lives in `lib/business.ts`
    because these are public, rendered values, not secrets.
-4. Set the production domain to the same value as `BUSINESS.domain`, so canonical
-   URLs, `robots.txt` and the sitemap agree with where the site actually serves.
+4. Once live, set the production domain to match `REAL_IDENTITY.domain`, so
+   canonical URLs, `robots.txt` and the sitemap agree with where the site serves.
 
-Deploys will fail until step "Before deploying" is done.
+Demo builds deploy as-is. Production builds fail until "Going live" is done.
 
 ## Where things live
 

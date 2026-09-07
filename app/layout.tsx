@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Manrope, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SiteMotion from "@/components/SiteMotion";
-import { BUSINESS, req, siteUrl } from '@/lib/business';
+import DemoBanner from "@/components/DemoBanner";
+import { BUSINESS, DEMO_MODE, req, siteUrl } from '@/lib/business';
 import { PLANS, planOffers } from "@/lib/catalog";
 
 const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--nf-display", display: "swap" });
@@ -22,7 +23,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Frontier® Fiber" }],
   alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  robots: DEMO_MODE
+    ? { index: false, follow: false, nocache: true }
+    : { index: true, follow: true },
   openGraph: {
     type: "website",
     siteName: "Frontier® Fiber",
@@ -176,6 +179,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`js ${grotesk.variable} ${manrope.variable} ${mono.variable}`}>
       <body>
+        <DemoBanner />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}

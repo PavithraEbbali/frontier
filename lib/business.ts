@@ -53,7 +53,21 @@ export interface BusinessIdentity {
   callRecordingDisclosure: boolean | null;
 }
 
-export const BUSINESS: BusinessIdentity = {
+/* ---------------------------------------------------------------------------
+   DEMO MODE
+
+   While this is `true` the site builds and deploys with the clearly-fictional
+   values in DEMO_IDENTITY below, renders a persistent "demo" banner, and is
+   marked noindex so it cannot be indexed as a real Frontier retailer.
+
+   TO GO LIVE: fill in REAL_IDENTITY with the values from the signed agreement
+   and set DEMO_MODE to false. The build then refuses to compile until every
+   required value is present.
+   --------------------------------------------------------------------------- */
+export const DEMO_MODE = true;
+
+/** Real values. Empty until the operator supplies them. */
+const REAL_IDENTITY: BusinessIdentity = {
   legalName: null,
   tradeName: "Frontier",
   domain: null,
@@ -67,6 +81,31 @@ export const BUSINESS: BusinessIdentity = {
   spanishStaffed: null,
   callRecordingDisclosure: null,
 };
+
+/**
+ * Deliberately fictional stand-ins, used only while DEMO_MODE is true.
+ *
+ * The phone number is inside 555-0100..555-0199, the block reserved by the
+ * North American Numbering Plan for fiction, so it cannot ring a real line.
+ * Addresses and domains use the IANA/ICANN reserved `example` names. Nothing
+ * here should ever be presented as a real business detail.
+ */
+const DEMO_IDENTITY: BusinessIdentity = {
+  legalName: "Example Retailer LLC (demo)",
+  tradeName: "Frontier",
+  domain: null, // resolved from the deploy URL — see siteUrl()
+  agreementNoun: "Retailer",
+  street: "123 Example Street",
+  cityStateZip: "Example City, ST 00000",
+  email: "hello@example.com",
+  privacyEmail: "privacy@example.com",
+  phone: "(800) 555-0142",
+  hours: "Mon-Fri 9:00 AM - 6:00 PM ET",
+  spanishStaffed: false,
+  callRecordingDisclosure: false,
+};
+
+export const BUSINESS: BusinessIdentity = DEMO_MODE ? DEMO_IDENTITY : REAL_IDENTITY;
 
 /** Keys that must be set before the site can be built for production. */
 const REQUIRED_KEYS = [
@@ -84,7 +123,11 @@ const REQUIRED_KEYS = [
 ] as const satisfies readonly (keyof BusinessIdentity)[];
 
 export function missingBusinessConstants(): string[] {
-  return REQUIRED_KEYS.filter((k) => BUSINESS[k] === null);
+  // `domain` is resolved from the deploy URL in demo mode, so it is not
+  // required there; everything else still has to be present.
+  return REQUIRED_KEYS.filter(
+    (k) => BUSINESS[k] === null && !(DEMO_MODE && k === "domain")
+  );
 }
 
 /**
@@ -95,6 +138,7 @@ export function missingBusinessConstants(): string[] {
 export function assertBusinessConstants(): void {
   const missing = missingBusinessConstants();
   if (missing.length === 0) return;
+  if (DEMO_MODE) return;
   throw new Error(
     "Business-identity constants are unset in lib/business.ts: " +
       missing.join(", ") +
@@ -140,7 +184,13 @@ export function hasPhone(): boolean {
  * by assertBusinessConstants() until a real domain is set.
  */
 export function siteUrl(): string {
-  return BUSINESS.domain ? `https://www.${BUSINESS.domain}` : "http://localhost:3000";
+  if (BUSINESS.domain) return `https://www.${BUSINESS.domain}`;
+  // Vercel exposes the deploy host at build time; use it so canonical URLs,
+  // robots.txt and the sitemap agree with where the demo actually serves.
+  const vercel =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  if (vercel) return `https://${vercel}`;
+  return "http://localhost:3000";
 }
 
 export const LEAD_ENDPOINT: string | null = null;

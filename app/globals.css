@@ -153,6 +153,22 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .btn--block { width: 100%; }
 .magnetic { will-change: transform; }
 
+/* ------------------------------ Demo banner ----------------------------- */
+/* Only rendered while DEMO_MODE is true. Sits above everything, including the
+   sticky header, and is deliberately not dismissible. */
+.demobar { position: relative; z-index: 400; background: #141928; color: #fff;
+  border-bottom: 2px solid var(--brand); }
+.demobar__row { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+.demobar__tag { flex: 0 0 auto; font-family: var(--font-body); font-size: .68rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase; background: var(--brand); color: #fff;
+  padding: 4px 10px; border-radius: var(--r-pill); }
+.demobar p { font-size: .82rem; line-height: 1.5; color: rgba(255,255,255,.9); }
+.demobar strong { color: #fff; }
+@media (max-width: 620px) {
+  .demobar__row { align-items: flex-start; gap: 9px; }
+  .demobar p { font-size: .78rem; }
+}
+
 /* ------------------------------ Disclosure ------------------------------ */
 .disclosure { background: linear-gradient(90deg, var(--brand-700), var(--brand) 55%, var(--brand-400)); color: #fff; font-size: .82rem; }
 .disclosure__row { display: flex; align-items: center; gap: 12px; padding: 8px 0; flex-wrap: wrap; }
